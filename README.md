@@ -131,7 +131,7 @@ Built with a custom component library based on:
 
 ## 🚀 Hosted Application
 
-**Live Demo**: [https://your-app-url.vercel.app](https://your-app-url.vercel.app)
+**Live Demo**: [https://insight-liard.vercel.app/](https://insight-liard.vercel.app/)
 
 ## ✅ Completion Level
 
