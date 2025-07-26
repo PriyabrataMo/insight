@@ -5,34 +5,10 @@ import { ActionItem } from "@/types";
 import { TranscriptForm } from "@/components/TranscriptForm";
 import { ActionItemsList } from "@/components/ActionItemsList";
 import { ProgressChart } from "@/components/ProgressChart";
-import { Brain, FileText, Plus, History, Settings, User } from "lucide-react";
-import Link from "next/link";
+import { Brain, FileText, Plus, History } from "lucide-react";
 
 export default function Home() {
   const [actionItems, setActionItems] = useState<ActionItem[]>([]);
-
-  // Load saved action items from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem("actionItems");
-    if (saved) {
-      try {
-        const parsedItems = JSON.parse(saved);
-        // Convert date strings back to Date objects
-        const itemsWithDates = parsedItems.map((item: any) => ({
-          ...item,
-          createdAt: new Date(item.createdAt),
-        }));
-        setActionItems(itemsWithDates);
-      } catch (error) {
-        console.error("Error loading saved action items:", error);
-      }
-    }
-  }, []);
-
-  // Save action items to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("actionItems", JSON.stringify(actionItems));
-  }, [actionItems]);
 
   const handleActionItemsGenerated = (newItems: string[]) => {
     const items: ActionItem[] = newItems.map((text) => ({
@@ -77,29 +53,6 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Link
-                href="/dashboard"
-                className="flex items-center px-4 py-2.5 text-sm font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 hover:scale-105"
-              >
-                <Settings className="h-5 w-5 mr-2" />
-                Dashboard
-              </Link>
-              <Link
-                href="/history"
-                className="flex items-center px-4 py-2.5 text-sm font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 hover:scale-105"
-              >
-                <History className="h-5 w-5 mr-2" />
-                History
-              </Link>
-              <Link
-                href="/profile"
-                className="flex items-center px-4 py-2.5 text-sm font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 hover:scale-105"
-              >
-                <User className="h-5 w-5 mr-2" />
-                Profile
-              </Link>
             </div>
           </div>
         </div>
@@ -246,26 +199,6 @@ export default function Home() {
             Submit meeting transcripts to automatically generate and track
             action items with cutting-edge artificial intelligence
           </p>
-          <div className="flex flex-wrap items-center justify-center space-x-8 text-sm font-medium">
-            <Link
-              href="/privacy"
-              className="text-gray-600 hover:text-blue-600 transition-colors hover:underline"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-600 hover:text-blue-600 transition-colors hover:underline"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="/support"
-              className="text-gray-600 hover:text-blue-600 transition-colors hover:underline"
-            >
-              Support
-            </Link>
-          </div>
         </footer>
       </div>
     </div>

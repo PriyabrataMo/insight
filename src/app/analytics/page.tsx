@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ActionItem } from "@/types";
 import {
   Card,
@@ -59,23 +59,6 @@ export default function Analytics() {
   const [timeRange, setTimeRange] = useState<"week" | "month" | "quarter">(
     "month"
   );
-
-  useEffect(() => {
-    const saved = localStorage.getItem("actionItems");
-    if (saved) {
-      try {
-        const parsedItems = JSON.parse(saved);
-        const itemsWithDates = parsedItems.map((item: any) => ({
-          ...item,
-          createdAt: new Date(item.createdAt),
-        }));
-        setActionItems(itemsWithDates);
-        generateAnalytics(itemsWithDates);
-      } catch (error) {
-        console.error("Error loading saved action items:", error);
-      }
-    }
-  }, [timeRange]);
 
   const generateAnalytics = (items: ActionItem[]) => {
     const now = new Date();

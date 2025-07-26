@@ -68,8 +68,8 @@ export function TranscriptForm({
               Submit Meeting Transcript
             </CardTitle>
             <CardDescription className="text-lg text-gray-600 mt-1">
-              Paste your meeting transcript below and we'll generate actionable
-              tasks using AI.
+              Paste your meeting transcript below and we&apos;ll generate
+              actionable tasks using AI.
             </CardDescription>
           </div>
         </div>
